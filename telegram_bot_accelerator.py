@@ -135,8 +135,10 @@ async def converse_handler(update: Update, context: CallbackContext):
     else:
         context.user_data['converse'] = not converse
 
-    print(context.user_data['converse'])
-    await bot.send_message(chat_id=update.effective_chat.id, text=f"Conversation is now {'Off' if converse else 'On'}. You {'can not' if converse else 'can'} generate questions or summaries.")
+    textMsg = 'I can help you find content that aligns with your interests and to answer any questions you may have. Please feel free to ask me a question'
+    if not context.user_data['converse']:
+        textMsg = 'Conversation is now Off. You can not generate questions or summaries.'
+    await bot.send_message(chat_id=update.effective_chat.id, text=textMsg)
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Send a message when the command /help is issued."""
