@@ -277,9 +277,9 @@ def main() -> None:
 
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CommandHandler("help", help_command))
-    application.add_handler(CommandHandler('set_language', language_handler))
-    application.add_handler(CommandHandler('show_categories', keyword_handler))
-    application.add_handler(CommandHandler('converse', converse_handler))
+    application.add_handler(CommandHandler('select_language', language_handler))
+    application.add_handler(CommandHandler('select_category', keyword_handler))
+    application.add_handler(CommandHandler('enable_conversation', converse_handler))
 
     application.add_handler(CallbackQueryHandler(preferred_language_callback, pattern=r'lang_\w*'))
     application.add_handler(CallbackQueryHandler(preferred_keyword_callback, pattern=r'djp_\w*'))
