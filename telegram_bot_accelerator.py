@@ -134,16 +134,24 @@ async def preferred_content_callback(update: Update, context: CallbackContext):
 
 async def converse_handler(update: Update, context: CallbackContext):
     converse = context.user_data.get('converse')
-    print(converse)
+    preferred_language = context.user_data.get('language')
     if converse is None:
         context.user_data['converse'] = True 
     else:
         context.user_data['converse'] = not converse
 
-    textMsg = 'I can help you find content that aligns with your interests and to answer any questions you may have. Please feel free to ask me a question'
+    text_message = ""
+    if preferred_language == "Hindi":
+        text_message = "मैं आपकी रुचियों से मेल खाने वाली सामग्री ढूंढने और आपके किसी भी प्रश्न का उत्तर देने में आपकी सहायता कर सकता हूं। कृपया मुझसे अब आप प्रश्न पूछ सकते हैं"
+    elif preferred_language == "Kannada":
+        text_message = "ನಿಮ್ಮ ಆಸಕ್ತಿಗಳಿಗೆ ಹೊಂದಿಕೆಯಾಗುವ ವಿಷಯವನ್ನು ಹುಡುಕಲು ಮತ್ತು ನೀವು ಹೊಂದಿರುವ ಯಾವುದೇ ಪ್ರಶ್ನೆಗಳಿಗೆ ಉತ್ತರಿಸಲು ನಾನು ನಿಮಗೆ ಸಹಾಯ ಮಾಡಬಲ್ಲೆ. ದಯವಿಟ್ಟು ನನಗೆ ಒಂದು ಪ್ರಶ್ನೆಯನ್ನು ಕೇಳಲು ಹಿಂಜರಿಯಬೇಡಿ."    
+    else:
+        text_message = 'I can help you find content that aligns with your interests and to answer any questions you may have. Please feel free to ask me a question'
+
     if not context.user_data['converse']:
-        textMsg = 'Conversation is now Off. You can not generate questions or summaries.'
-    await bot.send_message(chat_id=update.effective_chat.id, text=textMsg)
+        text_message = 'Conversation is now Off. You can not generate questions or summaries.'
+
+    await bot.send_message(chat_id=update.effective_chat.id, text=text_message)
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Send a message when the command /help is issued."""
