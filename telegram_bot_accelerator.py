@@ -18,7 +18,6 @@ set_language - To choose language of your choice
 
 load_dotenv()
 
-uuid_number = os.environ['uuid']
 botName = os.environ['botName']
 
 bot = Bot(token=os.environ['token'])
@@ -172,7 +171,6 @@ async def get_query_response(query: str, voice_message_url: str, voice_message_l
         if voice_message_url is None:
             if voice_message_language == "English":
                 params = {
-                    'uuid_number': uuid_number,
                     'query_string': query,
                     'skip_cache': True,
                     'converse': converse
@@ -182,7 +180,6 @@ async def get_query_response(query: str, voice_message_url: str, voice_message_l
                       + urllib.parse.urlencode(params)
             else:
                 params = {
-                    'uuid_number': uuid_number,
                     'query_text': query,
                     'audio_url': "",
                     'input_language': voice_message_language,
@@ -193,7 +190,6 @@ async def get_query_response(query: str, voice_message_url: str, voice_message_l
                       + urllib.parse.urlencode(params)
         else:
             params = {
-                'uuid_number': uuid_number,
                 'audio_url': voice_message_url,
                 'input_language': voice_message_language,
                 'output_format': 'Voice',

@@ -8,7 +8,6 @@ The Sakhi Telegram Bot is a Python-based bot that interacts with the Sakhi API S
 - Telegram Bot API token
 - Telegram Bot Name
 - Sakhi API Server URL
-- Context based UUID
 
 ## Installation
 
@@ -24,7 +23,6 @@ The Sakhi Telegram Bot is a Python-based bot that interacts with the Sakhi API S
 
 3. Set up the configuration
 
-   - uuid
    - token
    - botName
    - upstream
