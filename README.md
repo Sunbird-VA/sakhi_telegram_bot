@@ -8,6 +8,7 @@ The Sakhi Telegram Bot is a Python-based bot that interacts with the Sakhi API S
 - Telegram Bot API token
 - Telegram Bot Name
 - Sakhi API Server URL
+- Marqo index ID
 
 ## Installation
 
@@ -26,6 +27,8 @@ The Sakhi Telegram Bot is a Python-based bot that interacts with the Sakhi API S
    - token
    - botName
    - upstream
+   - marqo_converse_index_id
+   - marqo_discovery_index_id
    - promptMsg (optional)
 
 5. Start the Telegram bot

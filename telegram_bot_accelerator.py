@@ -167,10 +167,12 @@ class ApiError(TypedDict):
 
 async def get_query_response(query: str, voice_message_url: str, voice_message_language: str, converse: bool) -> Union[ApiResponse, ApiError]:
     _domain = os.environ['upstream']
+    index_id = os.environ['marqo_converse_index_id'] if converse else os.environ['marqo_discovery_index_id']
     try:
         if voice_message_url is None:
             if voice_message_language == "English":
                 params = {
+                    'index_id': index_id,
                     'query_string': query,
                     'skip_cache': True,
                     'converse': converse
@@ -180,6 +182,7 @@ async def get_query_response(query: str, voice_message_url: str, voice_message_l
                       + urllib.parse.urlencode(params)
             else:
                 params = {
+                    'index_id': index_id,
                     'query_text': query,
                     'audio_url': "",
                     'input_language': voice_message_language,
@@ -190,6 +193,7 @@ async def get_query_response(query: str, voice_message_url: str, voice_message_l
                       + urllib.parse.urlencode(params)
         else:
             params = {
+                'index_id': index_id,
                 'audio_url': voice_message_url,
                 'input_language': voice_message_language,
                 'output_format': 'Voice',
